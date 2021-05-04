@@ -17,7 +17,7 @@ def app_specific_action(locust):
     project_id = project[1]
 
     # Get issue type for the project
-    response = locust.get(f'/rest/api/2/issue/createmeta?projectIds={project_id}', headers=RESOURCE_HEADERS)
+    response = locust.get(f'/rest/api/2/issue/createmeta?projectIds={project_id}', headers=RESOURCE_HEADERS, catch_response=True)
     content = json.loads(response.content)
     project_key = content["projects"][0]["key"] 
     issue_type = content["projects"][0]["issuetypes"][0]["name"]
@@ -31,5 +31,5 @@ def app_specific_action(locust):
 
     body = {"fields": {"project": {"key": project_key}, "summary": f"{summary}", "description": f"{description}", "priority": { "name": "High" }, "labels":[f"{incident_id}"], "issuetype": {"name": issue_type}}}
     logger.locust_info(f"Json Body: {body}")
-    response = locust.post(f'/rest/api/2/issue', headers=ADMIN_HEADERS, json=body)
+    response = locust.post(f'/rest/api/2/issue', headers=ADMIN_HEADERS, json=body, catch_response=True)
 
