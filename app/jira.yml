@@ -22,7 +22,7 @@ settings:
     allow_analytics: Yes            # Allow sending basic run analytics to Atlassian. These analytics help us to understand how the tool is being used and help us to continue to invest in this tooling. For more details please see our README.
     # Action percentage for Jmeter and Locust load executors
     create_issue: 4
-    search_jql: 10
+    search_jql: 6
     view_issue: 40
     view_project_summary: 4
     view_dashboard: 12
@@ -33,7 +33,7 @@ settings:
     view_kanban_board: 3
     view_backlog: 6
     browse_boards: 2
-    standalone_extension: 6 # By default disabled
+    standalone_extension: 10 # By default disabled
     # Custom dataset section.
     custom_dataset_query:          # Write JQL query to add JQL output to the app/datasets/jira/custom-issues.csv, e.g. "summary ~ 'AppIssue*'"
 services:

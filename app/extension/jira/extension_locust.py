@@ -26,10 +26,21 @@ def app_specific_action(locust):
     
     # Create issue in project
     summary = f'Locust summary {generate_random_string(10, only_letters=True)}'
-    description = f'Locust description {generate_random_string(10)}'
-    incident_id = f'IncidentId:{generate_random_string(5)}'
+    description = f'Locust description {generate_random_string(10, only_letters=True)}'
+    incident_id = f'IncidentId:1234567'
 
-    body = {"fields": {"project": {"key": project_key}, "summary": f"{summary}", "description": f"{description}", "priority": { "name": "High" }, "labels":[f"{incident_id}"], "issuetype": {"name": issue_type}}}
+    body = {
+        "fields": {
+            "project": {
+                "key": project_key
+                }, 
+            "summary": f"{summary}",
+            "description": f"{description}",
+            "priority": { "name": "High" },
+            "labels":[f"{incident_id}"],
+            "issuetype": {"name": issue_type}
+            }
+        }
     logger.locust_info(f"Json Body: {body}")
     response = locust.post(f'/rest/api/2/issue', headers=ADMIN_HEADERS, json=body, catch_response=True)
-
+    
